@@ -8,7 +8,7 @@ def main():
     else:
         ip = ipaddress.ip_interface(sys.argv[1])
 
-    print("\n[NORMAL]")
+    print("\n[ADDRESS]")
     print("IP address : " + str(ip.ip))
     print("Netmask    : " + str(ip.netmask))
     print("Hostmask   : " + str(ip.hostmask))
