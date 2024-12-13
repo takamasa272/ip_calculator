@@ -62,6 +62,19 @@ def main():
     print("\n")
 
 
+def calc_numhost(ip) -> int:
+    if ip.version == 4:
+        if ip.network.prefixlen <= 30:
+            return 2 ** (32 - ip.network.prefixlen) - 2
+        else:
+            return 2 ** (32 - ip.network.prefixlen)
+    else:
+        if ip.network.prefixlen <= 126:
+            return 2 ** (128 - ip.network.prefixlen) - 2
+        else:
+            return 2 ** (128 - ip.network.prefixlen)
+
+
 # convert IP address to binary
 def to_bin(ip) -> str:
     if ip.version == 4:
