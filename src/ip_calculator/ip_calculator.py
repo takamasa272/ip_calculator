@@ -56,6 +56,7 @@ def main():
         print("Reserved address")
 
     print("\n[Supplement]")
+    print("Number of hosts: " + str(calc_numhost(ip)))
     print("Integer : " + str(int(ip.ip)))
     print("PTR record: " + str(ip.ip.reverse_pointer))
 
