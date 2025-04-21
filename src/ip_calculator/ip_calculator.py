@@ -79,8 +79,10 @@ def calc_numhost(ip) -> int:
         else:
             return 2 ** (32 - ip.network.prefixlen)
     else:
-        if ip.network.prefixlen <= 126:
-            return 2 ** (128 - ip.network.prefixlen) - 2
+        if ip.network.prefixlen <= 64:
+            return 2 ** (128 - ip.network.prefixlen) - 128
+        elif: ip.network.prefixlen <= 126:
+            return 2 ** (128 - ip.network.prefixlen) - 1
         else:
             return 2 ** (128 - ip.network.prefixlen)
 
