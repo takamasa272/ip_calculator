@@ -1,6 +1,6 @@
 [project]
 name = "ip_calculator"
-version = "1.1.0"
+version = "1.1.1"
 description = "IP address calculator"
 readme = "README.md"
 license = {file = "LICENSE"}
