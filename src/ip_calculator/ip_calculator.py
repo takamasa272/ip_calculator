@@ -14,24 +14,33 @@ def main():
     print("Hostmask   : " + str(ip.hostmask))
     print("NW prefix  : " + str(ip.network))
 
-    if (
-        ip.version == 4
-        and ip.network.prefixlen <= 30
-        or ip.version == 6
-        and ip.network.prefixlen <= 126
-    ):
-        print("\nNetwork   : " + str(ip.network[0]))
-        print("Min host  : " + str(ip.network[1]))
-        print("Max host  : " + str(ip.network[-2]))
-        print("Broadcast : " + str(ip.network[-1]))
-    elif (
-        ip.version == 4
-        and ip.network.prefixlen == 31
-        or ip.version == 6
-        and ip.network.prefixlen == 127
-    ):
-        print("\nNetwork   : " + str(ip.network[0]))
-        print("Broadcast : " + str(ip.network[-1]))
+    if ip.version == 4:
+        if ip.network.prefixlen <= 30:
+            print("\nNetwork   : " + str(ip.network[0]))
+            print("Min host  : " + str(ip.network[1]))
+            print("Max host  : " + str(ip.network[-2]))
+            print("Broadcast : " + str(ip.network[-1]))
+        
+        elif ip.network.prefixlen == 31:
+            print("\nNetwork   : " + str(ip.network[0]))
+            print("Broadcast : " + str(ip.network[-1]))
+
+    # There is no Broadcast address in IPv6
+    if ip.version == 6:
+        if ip.network.prefixlen <= 64:
+            print("\nNetwork   : " + str(ip.network[0]))
+            print("Min host  : " + str(ip.network[1]))
+            print("Max host  : " + str(ip.network[-129]))
+            print("Max range : " + str(ip.network[-1]))
+        
+        elif ip.network.prefixlen <= 126:
+            print("\nNetwork   : " + str(ip.network[0]))
+            print("Min host  : " + str(ip.network[1]))
+            print("Max range : " + str(ip.network[-1]))
+
+        elif ip.network.prefixlen == 127:
+            print("\nNetwork   : " + str(ip.network[0]))
+            print("Max range : " + str(ip.network[-1]))
 
     print("\n[BINARY]")
     print("IP address : " + to_bin(ip.ip))
